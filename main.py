@@ -1,20 +1,28 @@
 import speech_recognition as sr
 import pyttsx3
 
-def voice_to_text():
-    r = sr.Recognizer()
+r = sr.Recognizer()
 
-    print("Combien de temps voulez vous que l'enregistement dure (en seconde)?")
-    duration = input()
+
+def record_voice(duration):
 
     with sr.Microphone() as source:
         print("Parlez maintenant...")
         audio = r.record(source, duration=int(duration))
         print("Enregistrement terminé.")
+    
+    return audio
+
+
+def voice_to_text():
+    print("Combien de temps voulez vous que l'enregistement dure (en seconde)?")
+    duration = input()
+    audio = record_voice(duration)
 
     try:
         text = r.recognize_google(audio, language='fr-FR')
         print("Texte transcrit: " + text)
+        return text
     except sr.UnknownValueError:
         print("Je n'ai pas compris ce que vous avez dit.")
     except sr.RequestError as e:
@@ -39,8 +47,8 @@ def text_to_voice(text):
 
 
 if __name__ == "__main__":
-    # voice_to_text()
-    text = "Bonjour, comment allez-vous ?"
+    text = voice_to_text()
+    # text = "Bonjour, comment allez-vous ?"
     text_to_voice(text)
     print("main called")
 
