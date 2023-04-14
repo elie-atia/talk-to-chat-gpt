@@ -1,0 +1,6 @@
+"Task","Time it's take"
+"Voice-to-text", "~20 min"
+"Text-to-voice", "~20 min"
+"Detect when the voice is finish, to proesss it and call the voice-to-text", "~30 min"
+"Call the chat-gpt from the python code","~40min"
+"Put all theses together and create an infinite chat bot", "~30min"
