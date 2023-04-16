@@ -4,13 +4,13 @@ The purpose of this project is to communicate with ChatGPT. The program transcri
 
 ## Installation
 
-python -m venv ./my_venv
-.\my_venv\Scripts\activate
-pip install -r requirements.txt
+`python -m venv ./my_venv`
+`.\my_venv\Scripts\activate`
+`pip install -r requirements.txt`
 
 ## Usage
 
-run this command: python ./main.py
+run this command: `python ./main.py`
 
 ## Examples
 
