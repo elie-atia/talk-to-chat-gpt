@@ -1,8 +1,18 @@
 import speech_recognition as sr
 import pyttsx3
+import openai
+from dotenv import load_dotenv
+import os
 
 r = sr.Recognizer()
 
+# Charger les variables d'environnement à partir du fichier .env
+load_dotenv()
+
+# Accéder à la variable d'environnement chargée
+api_key = os.getenv("API_KEY")
+
+openai.api_key = api_key
 
 def record_voice(duration):
 
@@ -45,11 +55,37 @@ def text_to_voice(text):
     engine.say(text)
     engine.runAndWait()
 
+def talk_with(persona, tell_user, ask_user):
+    message_history = []
+    while True:
+        user_input = ask_user()
+        if user_input == "":
+            return message_history
+
+        message_history.append({"role": "user", "content": user_input})
+        query = [{"role": "system", "content": persona}]
+        query.extend(message_history)
+        result = openai.ChatCompletion.create(
+          model="gpt-3.5-turbo",
+          messages=query,
+          max_tokens=300
+
+        )
+        gpt_message = result["choices"][0]["message"]
+        message_history.append({"role": gpt_message["role"], "content": gpt_message["content"]})
+        tell_user("GPT: " + gpt_message["content"])
+
+
 
 if __name__ == "__main__":
-    text = voice_to_text()
+    # text = voice_to_text()
     # text = "Bonjour, comment allez-vous ?"
-    text_to_voice(text)
-    print("main called")
+    talk_with(
+        persona="""Repond moi en francais, avec des reponses courtes et precises.""",
+        tell_user=text_to_voice,
+        ask_user=voice_to_text
+    )
+    # text_to_voice(text)
+
 
     
