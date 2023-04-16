@@ -10,6 +10,8 @@ Activate the virtual environment using `.\my_venv\Scripts\activate` (for Windows
 
 Install the required packages using `pip install -r requirements.txt`.
 
+Put your API-KEY in the .`env` file.
+
 ## Usage
 
 run this command: `python ./main.py`
@@ -31,3 +33,16 @@ To learn more about these libraries, please visit their respective websites.
 ## Références
 
 - [ChatGPT API with Python](https://www.mikulskibartosz.name/chatgpt-api-with-python/)
+
+
+To learn more about these libraries, please visit their respective websites.
+
+## Documentation
+
+# ChatGPT API
+The API uses the entire chat history to generate the next message every time. The API returns only the next message, so we must keep the history of messages ourselves if we want to implement a longer interaction.
+
+Each message is a chat interaction:
+  - `system`: to specify the context
+  - `user`: the message I sent
+  - `assistant`: the model's response (for in-context-learning, we can provide them)
