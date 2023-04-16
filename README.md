@@ -4,9 +4,9 @@ The purpose of this project is to communicate with ChatGPT. The program transcri
 
 ## Installation
 
-`python -m venv ./my_venv`
-`.\my_venv\Scripts\activate`
-`pip install -r requirements.txt`
+Create a virtual environment using `python -m venv ./my_venv`
+Activate the virtual environment using `.\my_venv\Scripts\activate` (for Windows) or `source ./my_venv/bin/activate` (for Linux/Mac)
+Install the required packages using `pip install -r requirements.txt`
 
 ## Usage
 
