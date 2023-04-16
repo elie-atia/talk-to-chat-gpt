@@ -1,3 +1,4 @@
 SpeechRecognition==3.10.0
 PyAudio==0.2.13
 pyttsx3==2.90
+openai==0.27.4
