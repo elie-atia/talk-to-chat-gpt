@@ -10,17 +10,30 @@ api_key = os.getenv("API_KEY")
 
 openai.api_key = api_key
 
-query = [
-    {"role": "system", "content": "You are a MySQL database. Return responses in the same format as MySQL."},
-    {"role": "user", "content": "insert into users(name, email) values ('John', 'john@galt.example');"},
-    {"role": "user", "content": "select count(*) from users"}
-]
+def talk_with(persona, tell_user, ask_user):
+    message_history = []
+    while True:
+        user_input = ask_user()
+        if user_input == "":
+            return message_history
 
-response = openai.ChatCompletion.create(
-  model="gpt-3.5-turbo",
-  messages=query
+        message_history.append({"role": "user", "content": user_input})
+        query = [{"role": "system", "content": persona}]
+        query.extend(message_history)
+        result = openai.ChatCompletion.create(
+          model="gpt-3.5-turbo",
+          messages=query,
+          max_tokens=30
+
+        )
+        gpt_message = result["choices"][0]["message"]
+        message_history.append({"role": gpt_message["role"], "content": gpt_message["content"]})
+        tell_user("GPT: " + gpt_message["content"])
+
+
+talk_with(
+    persona="""Comportez vous comme quelqun de tres naif et simple. Et repond moi en francais""",
+    tell_user=print,
+    ask_user=input
 )
 
-
-message_content = response.choices[0].message.content
-print(message_content)
