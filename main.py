@@ -19,12 +19,6 @@ api_key = os.getenv("API_KEY")
 openai.api_key = api_key
 
 
-
-
-
-
-
-
 def record_voice():
     r = sr.Recognizer()
     audio_queue = queue.Queue()
@@ -78,17 +72,6 @@ def record_voice():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 def voice_to_text():
     # print("Combien de temps voulez vous que l'enregistement dure (en seconde)?")
     # duration = input()
@@ -102,7 +85,6 @@ def voice_to_text():
         print("Je n'ai pas compris ce que vous avez dit.")
     except sr.RequestError as e:
         print("Erreur lors de la récupération des résultats depuis Google Speech Recognition service; {0}".format(e))
-
 
 
 def text_to_voice(text):
@@ -119,6 +101,7 @@ def text_to_voice(text):
 
     engine.say(text)
     engine.runAndWait()
+
 
 def talk_with(persona, tell_user, ask_user):
     message_history = []
@@ -142,7 +125,6 @@ def talk_with(persona, tell_user, ask_user):
         tell_user("GPT: " + gpt_message["content"])
 
 
-
 if __name__ == "__main__":
     # text = voice_to_text()
     # text = "Bonjour, comment allez-vous ?"
@@ -152,6 +134,3 @@ if __name__ == "__main__":
         ask_user=voice_to_text
     )
     # text_to_voice(text)
-
-
-    
