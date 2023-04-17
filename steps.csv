@@ -1,6 +1,6 @@
 "Task","Time it's take","Done"
 "Voice-to-text", "~25 min","✓"
 "Text-to-voice", "~30 min","✓"
-"Detect when the voice is finish, to proesss it, in the voice-to-text function", "~1h10 min",""
+"Detect when the voice is finish, to proesss it, in the voice-to-text function", "~1h10 min","✓"
 "Call the chat-gpt from the python code","~1h15min","✓"
 "Put all theses together and create an infinite chat bot", "~5min","✓"
